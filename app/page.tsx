@@ -4,11 +4,51 @@ import { TextArea } from "@/components/TextArea";
 import BoxReveal from "@/components/ui/box-reveal";
 import { InfiniteMovingLogos } from "@/components/ui/infinite-moving-logos";
 import NumberTicker from "@/components/ui/number-ticker";
+import { VelocityScroll } from "@/components/ui/scroll-based-velocity";
 import WordPullUp from "@/components/ui/word-pull-up";
 import Image from "next/image";
 import Link from "next/link";
 import { PiCheckBold } from "react-icons/pi";
 import { Link as ScrollLink, Element } from "react-scroll";
+
+const services = [
+  {
+    icon: "/s_6.png",
+    title: "Web Design + Development",
+    description:
+      "Take your business to the next level with our web design and development services",
+  },
+  {
+    icon: "/s_1.png",
+    title: "Search Engine Optimization",
+    description:
+      "Get your website to the top of search engine results with our SEO services",
+  },
+  {
+    icon: "/s_5.png",
+    title: "Content Creation",
+    description:
+      "Boost your brand's online presence with our social media marketing services",
+  },
+  {
+    icon: "/s_3.png",
+    title: "Social Media Marketing",
+    description:
+      "Interact with your customers and increase sales with our email marketing services",
+  },
+  {
+    icon: "/s_4.png",
+    title: "Email Marketing",
+    description:
+      "With our content creation services, we help businesses drive results",
+  },
+  {
+    icon: "/s_2.png",
+    title: "Pay-Per-Click Advertising",
+    description:
+      "Don't waste money on ineffective advertising. Our PPC services help you reach your target audience",
+  },
+];
 
 export default function Home() {
   return (
@@ -152,19 +192,46 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pb-24">
+      <section className="pb-10">
         <div className="container mx-auto">
           <div className="">
             <WordPullUp
               className="text-4xl font-bold tracking-[-0.02em] text-black dark:text-white md:text-7xl md:leading-[5rem]"
               words="Work with Clodron"
             />
+
+            <p className="text-center py-4 md:w-1/2 mx-auto text-xl md:text-2xl text-gray-500">
+              All of our services are designed to increase your productivity and
+              business.
+            </p>
           </div>
-          <p className="text-center py-4 md:w-1/2 mx-auto text-xl md:text-2xl text-gray-500">
-            All of our services are designed to increase your productivity and
-            business.
-          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
+            {services.map((service) => (
+              <div
+                className="flex flex-col justify-between h-full space-y-4 text-center bg-gray-100 rounded-lg p-6 hover:scale-105 transition-all"
+                key={service.title}>
+                <Image
+                  src={service.icon}
+                  alt={service.title}
+                  width={222}
+                  height={222}
+                  className="object-contain bg-gray-100 p-4 w-full h-40 rounded-md"
+                />
+                <h1 className="text-xl font-medium">{service.title}</h1>
+                <p className="text-gray-500">{service.description} </p>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
+
+      <section className="pb-24">
+        <VelocityScroll
+          text="Clodron Marketing Agency"
+          default_velocity={5}
+          className="font-display text-center text-4xl font-bold tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem] rotate-3"
+        />
       </section>
     </main>
   );
